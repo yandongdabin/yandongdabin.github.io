@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//souga.me">
-  <title>Dabin</title>
+  <title>esp与ebp的区别 | Dabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Dabin">
-<meta property="og:url" content="//souga.me/index.html">
+  <meta name="description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="esp与ebp的区别">
+<meta property="og:url" content="//souga.me/2016/11/13/esp与ebp的区别/index.html">
 <meta property="og:site_name" content="Dabin">
+<meta property="og:description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码">
+<meta property="og:updated_time" content="2016-11-13T13:25:25.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dabin">
+<meta name="twitter:title" content="esp与ebp的区别">
+<meta name="twitter:description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码">
   
     <link rel="alternative" href="/atom.xml" title="Dabin" type="application/atom+xml">
   
@@ -132,9 +136,7 @@
 </nav>
 
       <div class="body-wrap">
-        
-  
-    <article id="post-esp与ebp的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-esp与ebp的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -143,8 +145,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/13/esp与ebp的区别/">esp与ebp的区别</a>
+    <h1 class="article-title" itemprop="name">
+      esp与ebp的区别
     </h1>
   
 
@@ -155,9 +157,36 @@
         <blockquote>
 <p>ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。<br>上一段C语言以及其的汇编代码</p>
 </blockquote>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/11/13/esp与ebp的区别/#more">more >></a>
-        </p>
+<a id="more"></a>
+<p><strong>源代码</strong></p>
+<pre><code><figure class="highlight c++"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    test(<span class="number">1</span>,<span class="number">2</span>);    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> c = a + b;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p><strong>汇编代码</strong></p>
+<pre><code>main:
+    pushl   %ebp
+    movl    %esp, %ebp
+    andl    $-16, %esp #对齐esp保证四字节对齐，-16表示为0xfffffff0
+    subl    $16, %esp #为局部变量开辟空间，1 2 还有main函数隐含的两个参数
+    movl    $2, 4(%esp)  #将２存入栈所指的内存地址+ 4
+    movl    $1, (%esp)　#将１存入栈所指的内存地址
+    call    test　#函数调用
+    movl    $0, %eax  #return 0
+    leave　#清栈　并恢复ebp
+    ret
+test:
+    pushl   %ebp #保存调用函数的ebp
+    movl    %esp, %ebp ＃将当前栈顶赋值给ebp方便局部变量的引用
+    subl    $16, %esp　#为局部变量开辟空间　a,b,c为了对齐开辟了16个字节
+    movl    12(%ebp), %eax　#此时ebp的作用显示出来了,取１
+    movl    8(%ebp), %edx　#取２
+    addl    %edx, %eax　#1+2-&gt;eax
+    movl    %eax, -4(%ebp) ＃eax-&gt;c
+    movl    -4(%ebp), %eax ＃return c   c-&gt;eax
+    leave #清栈　并恢复ebp
+    ret
+</code></pre><p>上述的汇编代码中每个函数调用时都先保存了ebp，并且将当前的esp赋值给了ebp，在函数调用完毕都恢复了ebp使用的leave指令（等价为movl %ebp, %esp　popl %ebp）</p>
+<p>cdecl 与 stdcall的区别就是 cdecl需要自己完成函数的清除工作，而stdcall会用ret n自动完成清除工作</p>
+<h1 id="相关博文地址"><a href="#相关博文地址" class="headerlink" title="相关博文地址　"></a>相关博文地址　</h1><p><a href="http://www.360doc.com/content/11/0816/21/3398926_141002836.shtml" target="_blank" rel="external">LEAVE 指令 RET n 指令</a> 　　　　　　　 <a href="http://blog.csdn.net/striver1205/article/details/25216699]" target="_blank" rel="external">AT&amp;T汇编leave指令</a></p>
+
       
     </div>
     <div class="article-info article-info-index">
@@ -178,121 +207,64 @@
   </div>
 </article>
 
-
-
-
-
-
-
-
-
-
   
-    <article id="post-Cpp中的二维指针" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/13/Cpp中的二维指针/">C++中的二维指针</a>
-    </h1>
   
+    <a href="/2016/11/13/Cpp中的二维指针/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++中的二维指针</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/11/13/Cpp中的二维指针/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/13/Cpp中的二维指针/" class="archive-article-date">
-  	<time datetime="2016-11-13T12:54:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cplus/">cplus</a></li></ul>
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
 
 
 
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="esp与ebp的区别" data-title="esp与ebp的区别" data-url="//souga.me/2016/11/13/esp与ebp的区别/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dabin"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
-
-  
-    <article id="post-hexo搭建博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/13/hexo搭建博客/">hexo搭建博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>搭建hexo博客的一些参考链接</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/11/13/hexo搭建博客/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/13/hexo搭建博客/" class="archive-article-date">
-  	<time datetime="2016-11-13T09:28:01.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/install/">install</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-  
 
 
       </div>
@@ -314,8 +286,8 @@
 		fancybox: true,
 		mathjax: false,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
