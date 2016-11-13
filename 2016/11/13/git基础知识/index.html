@@ -6,14 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//souga.me">
-  <title>Archives: 2016 | Dabin</title>
+  <title>git基础知识 | Dabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Dabin">
-<meta property="og:url" content="//souga.me/archives/2016/index.html">
+  <meta name="description" content="关于git的一些基本知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git基础知识">
+<meta property="og:url" content="//souga.me/2016/11/13/git基础知识/index.html">
 <meta property="og:site_name" content="Dabin">
+<meta property="og:description" content="关于git的一些基本知识">
+<meta property="og:updated_time" content="2016-11-13T13:32:10.897Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dabin">
+<meta name="twitter:title" content="git基础知识">
+<meta name="twitter:description" content="关于git的一些基本知识">
   
     <link rel="alternative" href="/atom.xml" title="Dabin" type="application/atom+xml">
   
@@ -132,150 +136,151 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-git基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/git基础知识/" class="archive-article-date">
-  	<time datetime="2016-11-13T13:26:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/git基础知识/">git基础知识</a>
+    <h1 class="article-title" itemprop="name">
+      git基础知识
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于git的一些基本知识 </p>
+<a id="more"></a>
+<h1 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1.初始化仓库"></a>1.初始化仓库</h1><pre><code>git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
+git add file（添加文件到暂存区）
+git commit -m ‘  ’（提交暂存区的修改到版本库）
+</code></pre><h1 id="2-版本回退-管理修改等"><a href="#2-版本回退-管理修改等" class="headerlink" title="2.版本回退 管理修改等"></a>2.版本回退 管理修改等</h1><pre><code>git status（查看工作区当前的状态）
+git diff file （比较文件的修改状态）
+git log （查看版本的提交日志）
+git reset --hard （HEAD^或者是commit-id   HEAD^^表示上上版本，HEAD~100表示上100个版本） 回退版本库到制定的版本
+git reflog 用来记录每一次提交的日志
+</code></pre><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。<br>场景3 :  将修改提交到了版本库,用git reset –hard commit_id<br>git rm file 删除文件    </p>
+<h1 id="3-分支管理"><a href="#3-分支管理" class="headerlink" title="3.分支管理"></a>3.分支管理</h1><p><strong>创建分支与合并</strong></p>
+<pre><code>查看分支：git branch (当前分支前面会有一个 *)
+
+创建分支：git branch 
+
+切换分支：git checkout 
+
+创建+切换分支：git checkout -b 
+
+合并某分支到当前分支：git merge 
+
+删除分支：git branch -d 
+
+特殊的 合并是可以开启 –no-ff (no fast-forward选项)
+</code></pre><p><strong>冲突解决</strong></p>
+<p>当合并分支时可能会引起冲突,此时用git status查看产生冲突的文件,然后修改 &lt;&lt;&lt;&lt;&lt; ========= &gt;&gt;&gt;&gt;&gt;&gt;之间的部分,修改后add commit 冲突解决</p>
+<h1 id="4-stash"><a href="#4-stash" class="headerlink" title="4.stash"></a>4.stash</h1><pre><code>git stash 将当前为提交的工作区保存起来
+git  stash apply + git stash drop = git stash pop 应用原先保存的工作区,并且删除之前保存的内容
+git stash list 查看当前保存的列表
+</code></pre><h1 id="5-多人协作"><a href="#5-多人协作" class="headerlink" title="5.多人协作"></a>5.多人协作</h1><blockquote>
+<p>当clone下一个远程库的时候本地只会有一个master分支,所以需要在本地建立对应远程开发的分支</p>
+<p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin<br>git remote -v 查看远程仓库的详细信息<br>git push origin branchname 其中branchbane指的是本地的branchname,这条命令会把本地的分支推送到远程对应的分支上去</p>
+<p>首先，可以试图用git push origin branch-name推送自己的修改；</p>
+<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
+<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+<p>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</p>
+<p>如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream branch-name origin/branch-name。</p>
+</blockquote>
+<p>6.标签</p>
+<blockquote>
+<p>命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id</name></p>
+<p>命令git push origin <tagname>可以推送一个本地标签；</tagname></p>
+<p>命令git push origin –tags可以推送全部未推送过的本地标签；</p>
+<p>命令git tag -d <tagname>可以删除一个本地标签；</tagname></p>
+<p>命令git push origin :refs/tags/<tagname>可以删除一个远程标签。</tagname></p>
+<p>git show tagname 可以查看tag的详细信息</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/13/git基础知识/" class="archive-article-date">
+  	<time datetime="2016-11-13T13:26:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software-engineering/">software engineering</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/esp与ebp的区别/" class="archive-article-date">
-  	<time datetime="2016-11-13T13:19:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/esp与ebp的区别/">esp与ebp的区别</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cplus/">cplus</a></li></ul>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/13/esp与ebp的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">esp与ebp的区别</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/Cpp中的二维指针/" class="archive-article-date">
-  	<time datetime="2016-11-13T12:54:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/Cpp中的二维指针/">C++中的二维指针</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cplus/">cplus</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/11/13/hexo搭建博客/" class="archive-article-date">
-  	<time datetime="2016-11-13T09:28:01.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/13/hexo搭建博客/">hexo搭建博客</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/install/">install</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="git基础知识" data-title="git基础知识" data-url="//souga.me/2016/11/13/git基础知识/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"dabin"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
 
 
       </div>
@@ -298,8 +303,8 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
