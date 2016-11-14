@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//souga.me">
-  <title>git基础知识 | Dabin</title>
+  <title>俄罗斯方块的实现 | Dabin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于git的一些基本知识">
+  <meta name="description" content="俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git基础知识">
-<meta property="og:url" content="//souga.me/2016/11/13/git基础知识/index.html">
+<meta property="og:title" content="俄罗斯方块的实现">
+<meta property="og:url" content="//souga.me/2016/11/14/俄罗斯方块的实现/index.html">
 <meta property="og:site_name" content="Dabin">
-<meta property="og:description" content="关于git的一些基本知识">
-<meta property="og:updated_time" content="2016-11-13T13:32:10.897Z">
+<meta property="og:description" content="俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？">
+<meta property="og:image" content="http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.png">
+<meta property="og:updated_time" content="2016-11-14T02:09:48.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git基础知识">
-<meta name="twitter:description" content="关于git的一些基本知识">
+<meta name="twitter:title" content="俄罗斯方块的实现">
+<meta name="twitter:description" content="俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？">
+<meta name="twitter:image" content="http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.png">
   
     <link rel="alternative" href="/atom.xml" title="Dabin" type="application/atom+xml">
   
@@ -135,7 +137,7 @@
 </nav>
 
       <div class="body-wrap">
-        <article id="post-git基础知识" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-俄罗斯方块的实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -145,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      git基础知识
+      俄罗斯方块的实现
     </h1>
   
 
@@ -153,66 +155,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>关于git的一些基本知识 </p>
+        <p>俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？</p>
 <a id="more"></a>
-<h1 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1.初始化仓库"></a>1.初始化仓库</h1><pre><code>git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
-git add file（添加文件到暂存区）
-git commit -m ‘  ’（提交暂存区的修改到版本库）
-</code></pre><h1 id="2-版本回退-管理修改等"><a href="#2-版本回退-管理修改等" class="headerlink" title="2.版本回退 管理修改等"></a>2.版本回退 管理修改等</h1><pre><code>git status（查看工作区当前的状态）
-git diff file （比较文件的修改状态）
-git log （查看版本的提交日志）
-git reset --hard （HEAD^或者是commit-id   HEAD^^表示上上版本，HEAD~100表示上100个版本） 回退版本库到制定的版本
-git reflog 用来记录每一次提交的日志
-</code></pre><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。<br>场景3 :  将修改提交到了版本库,用git reset –hard commit_id<br>git rm file 删除文件    </p>
-<h1 id="3-分支管理"><a href="#3-分支管理" class="headerlink" title="3.分支管理"></a>3.分支管理</h1><p><strong>创建分支与合并</strong></p>
-<pre><code>查看分支：git branch (当前分支前面会有一个 *)
-
-创建分支：git branch 
-
-切换分支：git checkout 
-
-创建+切换分支：git checkout -b 
-
-合并某分支到当前分支：git merge 
-
-删除分支：git branch -d 
-
-特殊的 合并是可以开启 –no-ff (no fast-forward选项)
-</code></pre><p><strong>冲突解决</strong></p>
-<p>当合并分支时可能会引起冲突,此时用git status查看产生冲突的文件,然后修改 &lt;&lt;&lt;&lt;&lt; ========= &gt;&gt;&gt;&gt;&gt;&gt;之间的部分,修改后add commit 冲突解决</p>
-<h1 id="4-stash"><a href="#4-stash" class="headerlink" title="4.stash"></a>4.stash</h1><pre><code>git stash 将当前为提交的工作区保存起来
-git  stash apply + git stash drop = git stash pop 应用原先保存的工作区,并且删除之前保存的内容
-git stash list 查看当前保存的列表
-</code></pre><h1 id="5-多人协作"><a href="#5-多人协作" class="headerlink" title="5.多人协作"></a>5.多人协作</h1><blockquote>
-<p>当clone下一个远程库的时候本地只会有一个master分支,所以需要在本地建立对应远程开发的分支</p>
-<p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin<br>git remote -v 查看远程仓库的详细信息<br>git push origin branchname 其中branchbane指的是本地的branchname,这条命令会把本地的分支推送到远程对应的分支上去</p>
-<p>首先，可以试图用git push origin branch-name推送自己的修改；</p>
-<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
-<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
-<p>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</p>
-<p>如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream branch-name origin/branch-name。</p>
-</blockquote>
-<p>6.标签</p>
-<blockquote>
-<p>命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id</name></p>
-<p>命令git push origin <tagname>可以推送一个本地标签；</tagname></p>
-<p>命令git push origin –tags可以推送全部未推送过的本地标签；</p>
-<p>命令git tag -d <tagname>可以删除一个本地标签；</tagname></p>
-<p>命令git push origin :refs/tags/<tagname>可以删除一个远程标签。</tagname></p>
-<p>git show tagname 可以查看tag的详细信息</p>
-</blockquote>
+<h2 id="方块的表示"><a href="#方块的表示" class="headerlink" title="方块的表示"></a>方块的表示</h2><p>俄罗斯方块有<strong>7</strong>种类型的方块（见下图），每种方块占据虚拟的<strong>4x4</strong>的方格。 方块的旋转对应的是4x4方格的顺时针90度的旋转。</p>
+<p>表示一个方块的方式有很多，可以用一个4x4的数组，或者是用一个整数(int)中的16bit来表示</p>
+<p><img src="http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.png" alt="Tetris"></p>
+<h2 id="下落触底的判定"><a href="#下落触底的判定" class="headerlink" title="下落触底的判定"></a>下落触底的判定</h2><p>只需要判断下落中的方块与底或者其他方块接触即可。</p>
+<h2 id="为输的判定"><a href="#为输的判定" class="headerlink" title="为输的判定"></a>为输的判定</h2><p>玩过的都知道，当一个方块有部分落在屏幕外面的时候游戏会结束，所以判输的条件是当触底条件满足后，有方块在屏幕外面。</p>
+<h2 id="消除判定"><a href="#消除判定" class="headerlink" title="消除判定"></a>消除判定</h2><p>此处的自由性就比较大，可以循环判断是否需要消除（需要时可以自己加一些算法上的优化）。注意消除的顺序和内存中保存顺序的一致性就可。</p>
+<p>我基于MFC实现了一个简单的俄罗斯方块（见<a href="https://github.com/yandongdabin/Tetris" target="_blank" rel="external">github地址</a>），时间有限，有问题可以随时像我提出。</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/11/13/git基础知识/" class="archive-article-date">
-  	<time datetime="2016-11-13T13:26:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-13</time>
+      <a href="/2016/11/14/俄罗斯方块的实现/" class="archive-article-date">
+  	<time datetime="2016-11-14T01:37:01.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-14</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software-engineering/">software engineering</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game/">Game</a></li></ul>
 	</div>
 
       
@@ -225,18 +188,9 @@ git stash list 查看当前保存的列表
   
 <nav id="article-nav">
   
-    <a href="/2016/11/13/markdown基本语法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          markdown基本语法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/13/esp与ebp的区别/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">esp与ebp的区别</div>
+    <a href="/2016/11/13/about/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">about</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -282,7 +236,7 @@ git stash list 查看当前保存的列表
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="git基础知识" data-title="git基础知识" data-url="//souga.me/2016/11/13/git基础知识/"></div>
+	<div class="ds-thread" data-thread-key="俄罗斯方块的实现" data-title="俄罗斯方块的实现" data-url="//souga.me/2016/11/14/俄罗斯方块的实现/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
