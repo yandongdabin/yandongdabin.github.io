@@ -95,7 +95,7 @@
 方块的表示俄罗斯方块有7种类型的方块（见下图），每种方块占据虚拟的4x4的方格。 方块的旋转对应的是4x4方格的顺时针90度的旋转。
 表示一个方块的方式有很多，可以用一个4x4的数组，或者是用一个整数(int)中的16bit来表示">
 <meta property="og:image" content="http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.png">
-<meta property="og:updated_time" content="2016-11-14T11:22:12.858Z">
+<meta property="og:updated_time" content="2016-11-14T11:26:30.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="俄罗斯方块的实现">
 <meta name="twitter:description" content="俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？
@@ -461,7 +461,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:22:12+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:26:30+08:00">
               2016-11-14
             </time>
             
@@ -524,7 +524,7 @@
 <h2 id="下落触底的判定"><a href="#下落触底的判定" class="headerlink" title="下落触底的判定"></a>下落触底的判定</h2><p>只需要判断下落中的方块与底或者其他方块接触即可。</p>
 <h2 id="为输的判定"><a href="#为输的判定" class="headerlink" title="为输的判定"></a>为输的判定</h2><p>玩过的都知道，当一个方块有部分落在屏幕外面的时候游戏会结束，所以判输的条件是当触底条件满足后，有方块在屏幕外面。</p>
 <h2 id="消除判定"><a href="#消除判定" class="headerlink" title="消除判定"></a>消除判定</h2><p>此处的自由性就比较大，可以循环判断是否需要消除（需要时可以自己加一些算法上的优化）。注意消除的顺序和内存中保存顺序的一致性就可。</p>
-<p>我基于MFC实现了一个简单的俄罗斯方块（见<a href="https://github.com/yandongdabin/Tetris" target="_blank" rel="external">github地址</a>），时间有限，有问题可以随时像我提出。</p>
+<p>我基于MFC实现了一个简单的俄罗斯方块（见<a href="https://github.com/yandongdabin/Tetris" target="_blank" rel="external">github地址</a>），时间有限，有问题可以随时向我提出。</p>
 
       
     </div>
