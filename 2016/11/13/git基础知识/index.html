@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="关于git的一些基本知识">
+<meta name="description" content="关于git的一些基本知识 
+1.初始化仓库git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
+git add file（添加文件到暂存区）
+git commit -m ‘  ’（提交暂存区的修改到版本库）
+2.版本回退 管理修改等git status（查看工作区当前的状态）
+git diff file （比较文件的修改状态）
+git log （查看版">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git基础知识">
 <meta property="og:url" content="//souga.me/2016/11/13/git基础知识/index.html">
 <meta property="og:site_name" content="Little House">
-<meta property="og:description" content="关于git的一些基本知识">
-<meta property="og:updated_time" content="2016-11-13T13:32:10.897Z">
+<meta property="og:description" content="关于git的一些基本知识 
+1.初始化仓库git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
+git add file（添加文件到暂存区）
+git commit -m ‘  ’（提交暂存区的修改到版本库）
+2.版本回退 管理修改等git status（查看工作区当前的状态）
+git diff file （比较文件的修改状态）
+git log （查看版">
+<meta property="og:updated_time" content="2016-11-14T11:21:42.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基础知识">
-<meta name="twitter:description" content="关于git的一些基本知识">
+<meta name="twitter:description" content="关于git的一些基本知识 
+1.初始化仓库git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
+git add file（添加文件到暂存区）
+git commit -m ‘  ’（提交暂存区的修改到版本库）
+2.版本回退 管理修改等git status（查看工作区当前的状态）
+git diff file （比较文件的修改状态）
+git log （查看版">
 
 
 
@@ -453,8 +471,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:32:10+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:42+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -509,7 +527,6 @@
 
       
         <p>关于git的一些基本知识 </p>
-<a id="more"></a>
 <h1 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1.初始化仓库"></a>1.初始化仓库</h1><pre><code>git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
 git add file（添加文件到暂存区）
 git commit -m ‘  ’（提交暂存区的修改到版本库）
@@ -519,6 +536,7 @@ git log （查看版本的提交日志）
 git reset --hard （HEAD^或者是commit-id   HEAD^^表示上上版本，HEAD~100表示上100个版本） 回退版本库到制定的版本
 git reflog 用来记录每一次提交的日志
 </code></pre><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。<br>场景3 :  将修改提交到了版本库,用git reset –hard commit_id<br>git rm file 删除文件    </p>
+<a id="more"></a>
 <h1 id="3-分支管理"><a href="#3-分支管理" class="headerlink" title="3.分支管理"></a>3.分支管理</h1><p><strong>创建分支与合并</strong></p>
 <pre><code>查看分支：git branch (当前分支前面会有一个 *)
 

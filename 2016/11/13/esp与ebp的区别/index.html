@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码">
+<meta name="description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码
+
+源代码
+1234567891011int main()&amp;#123;    test(1,2);        return 0;&amp;#125;int test(int a,int b)&amp;#123;    int c = a + b;    return c;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="esp与ebp的区别">
 <meta property="og:url" content="//souga.me/2016/11/13/esp与ebp的区别/index.html">
 <meta property="og:site_name" content="Little House">
-<meta property="og:description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码">
-<meta property="og:updated_time" content="2016-11-13T13:25:25.108Z">
+<meta property="og:description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码
+
+源代码
+1234567891011int main()&amp;#123;    test(1,2);        return 0;&amp;#125;int test(int a,int b)&amp;#123;    int c = a + b;    return c;">
+<meta property="og:updated_time" content="2016-11-14T11:21:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="esp与ebp的区别">
-<meta name="twitter:description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码">
+<meta name="twitter:description" content="ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。上一段C语言以及其的汇编代码
+
+源代码
+1234567891011int main()&amp;#123;    test(1,2);        return 0;&amp;#125;int test(int a,int b)&amp;#123;    int c = a + b;    return c;">
 
 
 
@@ -453,8 +462,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:25:25+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:34+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -511,10 +520,10 @@
         <blockquote>
 <p>ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。<br>上一段C语言以及其的汇编代码</p>
 </blockquote>
-<a id="more"></a>
 <p><strong>源代码</strong></p>
 <pre><code><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    test(<span class="number">1</span>,<span class="number">2</span>);    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> c = a + b;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</code></pre><p><strong>汇编代码</strong></p>
+</code></pre><a id="more"></a>
+<p><strong>汇编代码</strong></p>
 <pre><code>main:
     pushl   %ebp
     movl    %esp, %ebp

@@ -84,16 +84,61 @@
 
 
 
-<meta name="description" content="最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。">
+<meta name="description" content="最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。
+百度文库上有一篇不错的文章 史上最牛逼的C++指针教学
+首先是文字说明，编译器对不同类型的解释形式:
+
+“数组名被改写成一个指针参数”规则并不是递归定义的。数组的数组会被改写成“数组的指针”，而不是“指针的指针”：
+
+
+
+
+实参
+所匹配的形参
+
+
+
+
+数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++中的二维指针">
 <meta property="og:url" content="//souga.me/2016/11/13/Cpp中的二维指针/index.html">
 <meta property="og:site_name" content="Little House">
-<meta property="og:description" content="最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。">
-<meta property="og:updated_time" content="2016-11-13T13:08:20.323Z">
+<meta property="og:description" content="最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。
+百度文库上有一篇不错的文章 史上最牛逼的C++指针教学
+首先是文字说明，编译器对不同类型的解释形式:
+
+“数组名被改写成一个指针参数”规则并不是递归定义的。数组的数组会被改写成“数组的指针”，而不是“指针的指针”：
+
+
+
+
+实参
+所匹配的形参
+
+
+
+
+数组">
+<meta property="og:updated_time" content="2016-11-14T11:21:22.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++中的二维指针">
-<meta name="twitter:description" content="最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。">
+<meta name="twitter:description" content="最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。
+百度文库上有一篇不错的文章 史上最牛逼的C++指针教学
+首先是文字说明，编译器对不同类型的解释形式:
+
+“数组名被改写成一个指针参数”规则并不是递归定义的。数组的数组会被改写成“数组的指针”，而不是“指针的指针”：
+
+
+
+
+实参
+所匹配的形参
+
+
+
+
+数组">
 
 
 
@@ -453,8 +498,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:08:20+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:22+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -509,7 +554,6 @@
 
       
         <p>最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。</p>
-<a id="more"></a>
 <p>百度文库上有一篇不错的文章 <a href="http://wenku.baidu.com/link?url=YNtzd8ILq7SWRwbPD6Md7Y6w4ejdLcDuxyRpuRrP7tikNd1fny6nIvldDsERAenwimkT5__3xOttNsRFV2yBrcZabqVvoD0HQ0oxXgK8hM7" target="_blank" rel="external">史上最牛逼的C++指针教学</a></p>
 <p>首先是文字说明，编译器对不同类型的解释形式:</p>
 <blockquote>
@@ -541,6 +585,7 @@
 </tr>
 </tbody>
 </table>
+<a id="more"></a>
 <p>下面是代码说明<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span> </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> </span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </div><div class="line"></div><div class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[]) </div><div class="line">&#123; </div><div class="line">    <span class="keyword">int</span> arr1[<span class="number">3</span>]; </div><div class="line">    <span class="keyword">int</span> arr2[<span class="number">3</span>]; </div><div class="line">    <span class="keyword">int</span> arr3[<span class="number">3</span>]; </div><div class="line">    <span class="keyword">int</span> * ptr; </div><div class="line">    <span class="comment">// ptr1是一个指向 int [3] 的指针，即ptr的类型和&amp;arr1的类型是一样的，注意：arr1指向的内存区域定长 </span></div><div class="line">    <span class="keyword">int</span> ptr1[<span class="number">3</span>][<span class="number">3</span>]=\&#123;\&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>\&#125;,\&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>\&#125;,\&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>\&#125;\&#125;; </div><div class="line">    <span class="comment">// ptr2是一个指向 int * 的指针，即ptr2的类型和&amp;ptr是一样的，注意：ptr指向的内存区域不定长 </span></div><div class="line">    <span class="keyword">int</span> * ptr2[<span class="number">3</span>]=\&#123;arr1,arr2,arr3\&#125;; </div><div class="line">    <span class="comment">// ptr3是一个指向 int [3] 的指针，即ptr3的类型和&amp;arr1的类型是一样的，注意：arr1指向的内存区域定长 </span></div><div class="line">    <span class="keyword">int</span>(* ptr3)[<span class="number">3</span>]=&amp;arr1; </div><div class="line">    ptr3=ptr1; <span class="comment">// 没错，他们的类型相同 </span></div><div class="line"> <span class="comment">// ptr3=ptr2;//error 无法从“int *[3]”转换为“int (*)[3] </span></div><div class="line"> <span class="comment">// ptr4是一个指向 int * 的指针，即ptr4的类型和&amp;ptr是一样的，注意：ptr指向的内存区域不定长 </span></div><div class="line">    <span class="keyword">int</span> ** ptr4; </div><div class="line">    <span class="comment">//ptr4=&amp;arr1; //error 无法从“int (*)[3]”转换为“int ** </span></div><div class="line">    ptr4=ptr2; <span class="comment">// 没错，他们的类型相同 </span></div><div class="line"> <span class="comment">//ptr4=ptr3; // error 无法从“int (*)[3]”转换为“int ** </span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">&#125;`</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="comment">/*A是一个指针数组 */</span></div><div class="line">    <span class="keyword">int</span> **A = <span class="keyword">new</span> <span class="keyword">int</span> *[N];</div><div class="line">    <span class="comment">/*注意此处申请了各个空间不连续，和A[N][N]的方式要区分开来*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">        A[i] = <span class="keyword">new</span> <span class="keyword">int</span> [N];</div><div class="line">    &#125;</div><div class="line">    A[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">10</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*下面的输出中 一二个地址相同， 三四个地址相同</span></div><div class="line">    说明了每次new出的地址可能不相邻</div><div class="line">    */</div><div class="line">    <span class="keyword">double</span> *B  = (<span class="keyword">double</span> *)A;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The two address is same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;A&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;B&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The two address is same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;A[<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;&amp;A[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*下面两个的输出不相同</span></div><div class="line">    原因就是每个new操作申请的空间可能不相邻</div><div class="line">    但是如果对于 A[N][N]来说，这两者应该是相同的</div><div class="line">    */</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The output of the following two line wouldn't be the same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(*(A+<span class="number">1</span>)+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(B+<span class="number">1</span>*N+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// double *B  = (double *)A;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*验证了上面的说法 三者输出一致*/</span></div><div class="line">    <span class="keyword">int</span> C[N][N];</div><div class="line">    C[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">10</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">int</span> *D = (<span class="keyword">int</span> *)C;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The output of the following three line would be the same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;C[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(D+<span class="number">1</span>*N+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(*(C+<span class="number">1</span>)+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">int</span> *F[N];<span class="comment">//F是指向 int *类型的 数组，数组大小为N</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">        F[i] = <span class="keyword">new</span> <span class="keyword">int</span>[N];</div><div class="line">    &#125;</div><div class="line">    F[<span class="number">1</span>][<span class="number">1</span>] =<span class="number">10</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*两者相等*/</span></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;F[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(*(F+<span class="number">1</span>)+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*不可预料*/</span></div><div class="line">    <span class="keyword">int</span> *G = (<span class="keyword">int</span> *)F;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(G+<span class="number">1</span>*N+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*如果把此处的 (int(*)[N][N])C换成C 则编译不通过，因为 在编译器看来C的类型 int(*)[10]而不是 int[N][N]*/</span></div><div class="line">    <span class="keyword">int</span> (*H)[N][N] = (<span class="keyword">int</span>(*)[N][N]) C;<span class="comment">//H是指向 int[N][N]类型的指针</span></div><div class="line">    <span class="comment">/*可以用这种方式来访问C中的元素*/</span></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;(*H)[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       

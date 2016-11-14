@@ -454,7 +454,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T10:09:48+08:00">
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:22:12+08:00">
               2016-11-14
             </time>
             
@@ -506,6 +506,9 @@
       
         
           <p>俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？</p>
+<h2 id="方块的表示"><a href="#方块的表示" class="headerlink" title="方块的表示"></a>方块的表示</h2><p>俄罗斯方块有<strong>7</strong>种类型的方块（见下图），每种方块占据虚拟的<strong>4x4</strong>的方格。 方块的旋转对应的是4x4方格的顺时针90度的旋转。</p>
+<p>表示一个方块的方式有很多，可以用一个4x4的数组，或者是用一个整数(int)中的16bit来表示</p>
+<p><img src="http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.png" alt="Tetris"></p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/14/俄罗斯方块的实现/#more" rel="contents">
@@ -597,8 +600,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T22:01:06+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:22:01+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -649,6 +652,20 @@
       
         
           <p>markdown的基本语法</p>
+<h2 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h2><p>一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行（空行的定义是显示上看起来像是空的，便会被视为空行。比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。普通段落不该用空格或制表符来缩进。 一定要注意这一点，即不同段落之间要有空行相隔.<br>换行的话需要先在插入处先按入两个以上的空格然后回车，这样就插入了一个<br/></p>
+<p>列表<br>markdown支持无序列表和有序列表两种形式，对于无序列表来说有:</p>
+<pre><code>+list1
++list2
++list3
+</code></pre><p>或者是：</p>
+<pre><code>*list1
+*list2
+*list3
+</code></pre><p>或者是：</p>
+<pre><code>-list1
+-list2
+-list3
+</code></pre>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/13/markdown基本语法/#more" rel="contents">
@@ -740,8 +757,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:32:10+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:42+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -792,6 +809,15 @@
       
         
           <p>关于git的一些基本知识 </p>
+<h1 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1.初始化仓库"></a>1.初始化仓库</h1><pre><code>git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
+git add file（添加文件到暂存区）
+git commit -m ‘  ’（提交暂存区的修改到版本库）
+</code></pre><h1 id="2-版本回退-管理修改等"><a href="#2-版本回退-管理修改等" class="headerlink" title="2.版本回退 管理修改等"></a>2.版本回退 管理修改等</h1><pre><code>git status（查看工作区当前的状态）
+git diff file （比较文件的修改状态）
+git log （查看版本的提交日志）
+git reset --hard （HEAD^或者是commit-id   HEAD^^表示上上版本，HEAD~100表示上100个版本） 回退版本库到制定的版本
+git reflog 用来记录每一次提交的日志
+</code></pre><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。<br>场景3 :  将修改提交到了版本库,用git reset –hard commit_id<br>git rm file 删除文件    </p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/13/git基础知识/#more" rel="contents">
@@ -883,8 +909,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:25:25+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:34+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -937,6 +963,9 @@
           <blockquote>
 <p>ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。<br>上一段C语言以及其的汇编代码</p>
 </blockquote>
+<p><strong>源代码</strong></p>
+<pre><code><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></div><div class="line"></span>&#123;</div><div class="line">    test(<span class="number">1</span>,<span class="number">2</span>);    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></div><div class="line"></span>&#123;</div><div class="line">    <span class="keyword">int</span> c = a + b;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/13/esp与ebp的区别/#more" rel="contents">
@@ -1028,8 +1057,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T21:08:20+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:22+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -1080,6 +1109,37 @@
       
         
           <p>最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。</p>
+<p>百度文库上有一篇不错的文章 <a href="http://wenku.baidu.com/link?url=YNtzd8ILq7SWRwbPD6Md7Y6w4ejdLcDuxyRpuRrP7tikNd1fny6nIvldDsERAenwimkT5__3xOttNsRFV2yBrcZabqVvoD0HQ0oxXgK8hM7">史上最牛逼的C++指针教学</a></p>
+<p>首先是文字说明，编译器对不同类型的解释形式:</p>
+<blockquote>
+<p>“数组名被改写成一个指针参数”规则并不是递归定义的。数组的数组会被改写成“数组的指针”，而不是“指针的指针”：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>实参</th>
+<th>所匹配的形参</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组的数组 char c[8][10];</td>
+<td>char ()[10]; 数组指针</td>
+</tr>
+<tr>
+<td>指针数组 char c[10];</td>
+<td>char c; 指针的指针</td>
+</tr>
+<tr>
+<td>数组指针(行指针) char (c)[10];</td>
+<td>char (c)[10]; 不改变</td>
+</tr>
+<tr>
+<td>指针的指针 char c;</td>
+<td>char **c; 不改变</td>
+</tr>
+</tbody>
+</table>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/13/Cpp中的二维指针/#more" rel="contents">
@@ -1171,8 +1231,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-11-13T20:48:07+08:00">
-              2016-11-13
+            <time title="Post modified" itemprop="dateModified" datetime="2016-11-14T19:21:50+08:00">
+              2016-11-14
             </time>
             
           </span>
@@ -1223,6 +1283,7 @@
       
         
           <p>搭建hexo博客的一些参考链接</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><strong>参考链接</strong></h1><p><a href="http://www.jianshu.com/p/834d7cc0668d">我的博客是如何搭建的</a><br><a href="http://www.cnblogs.com/jarson-7426/p/5430757.html">使用hexo搭建属于自己的博客</a><br><a href="http://jingyan.baidu.com/article/d8072ac47aca0fec95cefd2d.html">史上最详细“截图”搭建Hexo博客并部署到Github</a><br><a href="http://www.jianshu.com/p/985d07d88ef4">Windows下一步步搭建自己的独立博客</a></p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/13/hexo搭建博客/#more" rel="contents">
