@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[俄罗斯方块的实现]]></title>
+      <url>//souga.me/2016/11/14/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
+      <content type="html"><![CDATA[<p>俄罗斯方块可能是大多数人小时候都会玩过的游戏，那么如果让我们实现一个俄罗斯方块需要考虑哪些问题呢？</p>
+<h2 id="方块的表示"><a href="#方块的表示" class="headerlink" title="方块的表示"></a>方块的表示</h2><p>俄罗斯方块有<strong>7</strong>种类型的方块（见下图），每种方块占据虚拟的<strong>4x4</strong>的方格。 方块的旋转对应的是4x4方格的顺时针90度的旋转。</p>
+<p>表示一个方块的方式有很多，可以用一个4x4的数组，或者是用一个整数(int)中的16bit来表示</p>
+<p><img src="http://ogd7u08dr.bkt.clouddn.com/image/jpg/tetris.png" alt="Tetris"></p>
+<a id="more"></a>
+<h2 id="下落触底的判定"><a href="#下落触底的判定" class="headerlink" title="下落触底的判定"></a>下落触底的判定</h2><p>只需要判断下落中的方块与底或者其他方块接触即可。</p>
+<h2 id="为输的判定"><a href="#为输的判定" class="headerlink" title="为输的判定"></a>为输的判定</h2><p>玩过的都知道，当一个方块有部分落在屏幕外面的时候游戏会结束，所以判输的条件是当触底条件满足后，有方块在屏幕外面。</p>
+<h2 id="消除判定"><a href="#消除判定" class="headerlink" title="消除判定"></a>消除判定</h2><p>此处的自由性就比较大，可以循环判断是否需要消除（需要时可以自己加一些算法上的优化）。注意消除的顺序和内存中保存顺序的一致性就可。</p>
+<p>我基于MFC实现了一个简单的俄罗斯方块（见<a href="https://github.com/yandongdabin/Tetris" target="_blank" rel="external">github地址</a>），时间有限，有问题可以随时向我提出。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[markdown基本语法]]></title>
+      <url>//souga.me/2016/11/13/markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>markdown的基本语法</p>
+<h2 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h2><p>一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行（空行的定义是显示上看起来像是空的，便会被视为空行。比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。普通段落不该用空格或制表符来缩进。 一定要注意这一点，即不同段落之间要有空行相隔.<br>换行的话需要先在插入处先按入两个以上的空格然后回车，这样就插入了一个<br></p>
+<p>列表<br>markdown支持无序列表和有序列表两种形式，对于无序列表来说有:</p>
+<pre><code>+list1
++list2
++list3
+</code></pre><p>或者是：</p>
+<pre><code>*list1
+*list2
+*list3
+</code></pre><p>或者是：</p>
+<pre><code>-list1
+-list2
+-list3
+</code></pre><a id="more"></a>
+<p>显示的效果是这样的：</p>
+<ul>
+<li>list1</li>
+<li>list2</li>
+<li>list3</li>
+</ul>
+<p>有序列表可以：</p>
+<pre><code>1. list1
+2. list2
+3. list3
+</code></pre><p>显示的效果是这样的</p>
+<ol>
+<li>list1</li>
+<li>list2</li>
+<li>list3</li>
+</ol>
+<p>1.序号后面要跟空格（最多三个），并且序号的顺序和取值是无所谓的。<br>2.有多个段落的时候，每个段落需要缩进一个TAB或者是4个空格。</p>
+<h2 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h2><p>1.代码区块</p>
+<p>markdown的代码区块很简单，只要缩进一个TAB或者是四个空格即可，在生成代码时，这多余的空格或者是TAB会自动的去除，代码区块的结束是以不缩进的段结束的<br><strong>特别的如果在列表中放代码区块的话，该区块就需要缩进两次，也就是 8 个空格或是 2 个制表符：</strong></p>
+<p>链接 此处出自 [<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a>]</p>
+<p>Markdown 支持两种形式的链接语法： 行内式和参考式两种形式。</p>
+<p>不管是哪一种，链接文字都是用 [方括号] 来标记。</p>
+<p><strong>行内链接</strong></p>
+<p>要建立一个行内式的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：</p>
+<pre><code>This is [an example](http://example.com/ &quot;Title&quot;) inline link.
+
+[This link](http://example.net/) has no title attribute.
+</code></pre><p>会产生：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://example.com/"</span> <span class="attr">title</span>=<span class="string">"Title"</span>&gt;</span></div><div class="line">an example<span class="tag">&lt;/<span class="name">a</span>&gt;</span> inline link.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://example.net/"</span>&gt;</span>This link<span class="tag">&lt;/<span class="name">a</span>&gt;</span> has no</div><div class="line">title attribute.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如果你是要链接到同样主机的资源，你可以使用相对路径：</p>
+<pre><code>See my [About](/about/) page for details.
+</code></pre><p><strong>参考形式的链接</strong></p>
+<p>参考式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记：</p>
+<pre><code>This is [an example][id] reference-style link.
+</code></pre><p>你也可以选择性地在两个方括号中间加上一个空格：</p>
+<pre><code>This is [an example] [id] reference-style link.
+</code></pre><p>接着，在文件的任意处，你可以把这个标记的链接内容定义出来：</p>
+<p>链接内容定义的形式为：</p>
+<p>方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字 接着一个冒号 接着一个以上的空格或制表符 接着链接的网址 选择性地接着 title 内容，可以用单引号、双引号或是括弧包着</p>
+<p>链接网址也可以用尖括号包起来：</p>
+<pre><code>[id]: &lt;http://example.com/&gt;  &quot;Optional Title Here&quot;
+</code></pre><p>你也可以把 title 属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：</p>
+<pre><code>[id]: http://example.com/longish/path/to/resource/here
+</code></pre><p>“Optional Title Here”<br>网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。</p>
+<p>链接辨别标签可以有字母、数字、空白和标点符号，但是并不区分大小写，因此下面两个链接是一样的：</p>
+<pre><code>[link text][a]
+[link text][A]
+</code></pre><p><strong>隐式链接标记功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 “Google” 链接到 google.com，你可以简化成</strong>：</p>
+<pre><code>[Google][]
+</code></pre><p>然后定义链接内容：</p>
+<pre><code>[Google]: http://google.com/
+</code></pre><p>由于链接文字可能包含空白，所以这种简化型的标记内也许包含多个单词：</p>
+<pre><code>Visit [Daring Fireball][] for more information.
+</code></pre><p>然后接着定义链接：</p>
+<pre><code>[Daring Fireball]: http://daringfireball.net/
+</code></pre><p>链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现段落的后面，你也可以把它放在文件最后面，就像是注解一样。</p>
+<p>下面是一个参考式链接的范例：</p>
+<pre><code>I get 10 times more traffic from [Google] [1] than from
+[Yahoo] [2] or [MSN] [3].
+[1]: http://google.com/        &quot;Google&quot;
+[2]: http://search.yahoo.com/  &quot;Yahoo Search&quot;
+[3]: http://search.msn.com/    &quot;MSN Search&quot;
+</code></pre><p>如果改成用链接名称的方式写：</p>
+<pre><code>I get 10 times more traffic from [Google][] than from
+[Yahoo][] or [MSN][].
+[google]: http://google.com/        &quot;Google&quot;   
+[yahoo]:  http://search.yahoo.com/  &quot;Yahoo Search&quot;
+[msn]:    http://search.msn.com/    &quot;MSN Search&quot;
+</code></pre><p>上面两种写法都会产生下面的 HTML。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I get 10 times more traffic from <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://google.com/"</span></span></div><div class="line"><span class="attr">title</span>=<span class="string">"Google"</span>&gt;Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span> than from</div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://search.yahoo.com/"</span> <span class="attr">title</span>=<span class="string">"Yahoo Search"</span>&gt;</span>Yahoo<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">or <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://search.msn.com/"</span> <span class="attr">title</span>=<span class="string">"MSN Search"</span>&gt;</span>MSN<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>下面是用行内式写的同样一段内容的 Markdown 文件，提供作为比较之用：</p>
+<pre><code>I get 10 times more traffic from [Google](http://google.com/ &quot;Google&quot;)
+than from [Yahoo](http://search.yahoo.com/ &quot;Yahoo Search&quot;) or
+[MSN](http://search.msn.com/ &quot;MSN Search&quot;).
+</code></pre><p>使用 Markdown 的参考式链接，可以让文件更像是浏览器最后产生的结果，让你可以把一些标记相关的元数据移到段落文字之外，你就可以增加链接而不让文章的阅读感觉被打断。</p>
+<p>然后就是图片 强调等不一一列举</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[git基础知识]]></title>
+      <url>//souga.me/2016/11/13/git%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
+      <content type="html"><![CDATA[<p>关于git的一些基本知识 </p>
+<h1 id="1-初始化仓库"><a href="#1-初始化仓库" class="headerlink" title="1.初始化仓库"></a>1.初始化仓库</h1><pre><code>git init （此命令会初始化当前文件夹为git仓库，实际上是建立了一个.git的隐藏文件夹）
+git add file（添加文件到暂存区）
+git commit -m ‘  ’（提交暂存区的修改到版本库）
+</code></pre><h1 id="2-版本回退-管理修改等"><a href="#2-版本回退-管理修改等" class="headerlink" title="2.版本回退 管理修改等"></a>2.版本回退 管理修改等</h1><pre><code>git status（查看工作区当前的状态）
+git diff file （比较文件的修改状态）
+git log （查看版本的提交日志）
+git reset --hard （HEAD^或者是commit-id   HEAD^^表示上上版本，HEAD~100表示上100个版本） 回退版本库到制定的版本
+git reflog 用来记录每一次提交的日志
+</code></pre><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。<br>场景3 :  将修改提交到了版本库,用git reset –hard commit_id<br>git rm file 删除文件    </p>
+<a id="more"></a>
+<h1 id="3-分支管理"><a href="#3-分支管理" class="headerlink" title="3.分支管理"></a>3.分支管理</h1><p><strong>创建分支与合并</strong></p>
+<pre><code>查看分支：git branch (当前分支前面会有一个 *)
+
+创建分支：git branch 
+
+切换分支：git checkout 
+
+创建+切换分支：git checkout -b 
+
+合并某分支到当前分支：git merge 
+
+删除分支：git branch -d 
+
+特殊的 合并是可以开启 –no-ff (no fast-forward选项)
+</code></pre><p><strong>冲突解决</strong></p>
+<p>当合并分支时可能会引起冲突,此时用git status查看产生冲突的文件,然后修改 &lt;&lt;&lt;&lt;&lt; ========= &gt;&gt;&gt;&gt;&gt;&gt;之间的部分,修改后add commit 冲突解决</p>
+<h1 id="4-stash"><a href="#4-stash" class="headerlink" title="4.stash"></a>4.stash</h1><pre><code>git stash 将当前为提交的工作区保存起来
+git  stash apply + git stash drop = git stash pop 应用原先保存的工作区,并且删除之前保存的内容
+git stash list 查看当前保存的列表
+</code></pre><h1 id="5-多人协作"><a href="#5-多人协作" class="headerlink" title="5.多人协作"></a>5.多人协作</h1><blockquote>
+<p>当clone下一个远程库的时候本地只会有一个master分支,所以需要在本地建立对应远程开发的分支</p>
+<p>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin<br>git remote -v 查看远程仓库的详细信息<br>git push origin branchname 其中branchbane指的是本地的branchname,这条命令会把本地的分支推送到远程对应的分支上去</p>
+<p>首先，可以试图用git push origin branch-name推送自己的修改；</p>
+<p>如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；</p>
+<p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+<p>没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！</p>
+<p>如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream branch-name origin/branch-name。</p>
+</blockquote>
+<p>6.标签</p>
+<blockquote>
+<p>命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id</name></p>
+<p>命令git push origin <tagname>可以推送一个本地标签；</tagname></p>
+<p>命令git push origin –tags可以推送全部未推送过的本地标签；</p>
+<p>命令git tag -d <tagname>可以删除一个本地标签；</tagname></p>
+<p>命令git push origin :refs/tags/<tagname>可以删除一个远程标签。</tagname></p>
+<p>git show tagname 可以查看tag的详细信息</p>
+</blockquote>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[esp与ebp的区别]]></title>
+      <url>//souga.me/2016/11/13/esp%E4%B8%8Eebp%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>ESP就是一直指向栈顶的指针,而EBP只是存取某时刻的栈顶指针,以方便对栈的操作,如获取函数参数、局部变量等。<br>上一段C语言以及其的汇编代码</p>
+</blockquote>
+<p><strong>源代码</strong></p>
+<pre><code><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    test(<span class="number">1</span>,<span class="number">2</span>);    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> c = a + b;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><a id="more"></a>
+<p><strong>汇编代码</strong></p>
+<pre><code>main:
+    pushl   %ebp
+    movl    %esp, %ebp
+    andl    $-16, %esp #对齐esp保证四字节对齐，-16表示为0xfffffff0
+    subl    $16, %esp #为局部变量开辟空间，1 2 还有main函数隐含的两个参数
+    movl    $2, 4(%esp)  #将２存入栈所指的内存地址+ 4
+    movl    $1, (%esp)　#将１存入栈所指的内存地址
+    call    test　#函数调用
+    movl    $0, %eax  #return 0
+    leave　#清栈　并恢复ebp
+    ret
+test:
+    pushl   %ebp #保存调用函数的ebp
+    movl    %esp, %ebp ＃将当前栈顶赋值给ebp方便局部变量的引用
+    subl    $16, %esp　#为局部变量开辟空间　a,b,c为了对齐开辟了16个字节
+    movl    12(%ebp), %eax　#此时ebp的作用显示出来了,取１
+    movl    8(%ebp), %edx　#取２
+    addl    %edx, %eax　#1+2-&gt;eax
+    movl    %eax, -4(%ebp) ＃eax-&gt;c
+    movl    -4(%ebp), %eax ＃return c   c-&gt;eax
+    leave #清栈　并恢复ebp
+    ret
+</code></pre><p>上述的汇编代码中每个函数调用时都先保存了ebp，并且将当前的esp赋值给了ebp，在函数调用完毕都恢复了ebp使用的leave指令（等价为movl %ebp, %esp　popl %ebp）</p>
+<p>cdecl 与 stdcall的区别就是 cdecl需要自己完成函数的清除工作，而stdcall会用ret n自动完成清除工作</p>
+<h1 id="相关博文地址"><a href="#相关博文地址" class="headerlink" title="相关博文地址　"></a>相关博文地址　</h1><p><a href="http://www.360doc.com/content/11/0816/21/3398926_141002836.shtml" target="_blank" rel="external">LEAVE 指令 RET n 指令</a> 　　　　　　　 <a href="http://blog.csdn.net/striver1205/article/details/25216699]" target="_blank" rel="external">AT&amp;T汇编leave指令</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[C++中的二维指针]]></title>
+      <url>//souga.me/2016/11/13/Cpp%E4%B8%AD%E7%9A%84%E4%BA%8C%E7%BB%B4%E6%8C%87%E9%92%88/</url>
+      <content type="html"><![CDATA[<p>最近在用二维数组传参的时候遇到了一些问题，感觉自己还是学的太菜了，纸上谈兵，从网上搜索了一篇博客，上面从编译器的角度解释了各类指针之间的关系。</p>
+<p>百度文库上有一篇不错的文章 <a href="http://wenku.baidu.com/link?url=YNtzd8ILq7SWRwbPD6Md7Y6w4ejdLcDuxyRpuRrP7tikNd1fny6nIvldDsERAenwimkT5__3xOttNsRFV2yBrcZabqVvoD0HQ0oxXgK8hM7" target="_blank" rel="external">史上最牛逼的C++指针教学</a></p>
+<p>首先是文字说明，编译器对不同类型的解释形式:</p>
+<blockquote>
+<p>“数组名被改写成一个指针参数”规则并不是递归定义的。数组的数组会被改写成“数组的指针”，而不是“指针的指针”：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>实参</th>
+<th>所匹配的形参</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数组的数组 char c[8][10];</td>
+<td>char ()[10]; 数组指针</td>
+</tr>
+<tr>
+<td>指针数组 char c[10];</td>
+<td>char c; 指针的指针</td>
+</tr>
+<tr>
+<td>数组指针(行指针) char (c)[10];</td>
+<td>char (c)[10]; 不改变</td>
+</tr>
+<tr>
+<td>指针的指针 char c;</td>
+<td>char **c; 不改变</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>下面是代码说明<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span> </span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> </span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>; </div><div class="line"></div><div class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[]) </div><div class="line">&#123; </div><div class="line">    <span class="keyword">int</span> arr1[<span class="number">3</span>]; </div><div class="line">    <span class="keyword">int</span> arr2[<span class="number">3</span>]; </div><div class="line">    <span class="keyword">int</span> arr3[<span class="number">3</span>]; </div><div class="line">    <span class="keyword">int</span> * ptr; </div><div class="line">    <span class="comment">// ptr1是一个指向 int [3] 的指针，即ptr的类型和&amp;arr1的类型是一样的，注意：arr1指向的内存区域定长 </span></div><div class="line">    <span class="keyword">int</span> ptr1[<span class="number">3</span>][<span class="number">3</span>]=\&#123;\&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>\&#125;,\&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>\&#125;,\&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>\&#125;\&#125;; </div><div class="line">    <span class="comment">// ptr2是一个指向 int * 的指针，即ptr2的类型和&amp;ptr是一样的，注意：ptr指向的内存区域不定长 </span></div><div class="line">    <span class="keyword">int</span> * ptr2[<span class="number">3</span>]=\&#123;arr1,arr2,arr3\&#125;; </div><div class="line">    <span class="comment">// ptr3是一个指向 int [3] 的指针，即ptr3的类型和&amp;arr1的类型是一样的，注意：arr1指向的内存区域定长 </span></div><div class="line">    <span class="keyword">int</span>(* ptr3)[<span class="number">3</span>]=&amp;arr1; </div><div class="line">    ptr3=ptr1; <span class="comment">// 没错，他们的类型相同 </span></div><div class="line"> <span class="comment">// ptr3=ptr2;//error 无法从“int *[3]”转换为“int (*)[3] </span></div><div class="line"> <span class="comment">// ptr4是一个指向 int * 的指针，即ptr4的类型和&amp;ptr是一样的，注意：ptr指向的内存区域不定长 </span></div><div class="line">    <span class="keyword">int</span> ** ptr4; </div><div class="line">    <span class="comment">//ptr4=&amp;arr1; //error 无法从“int (*)[3]”转换为“int ** </span></div><div class="line">    ptr4=ptr2; <span class="comment">// 没错，他们的类型相同 </span></div><div class="line"> <span class="comment">//ptr4=ptr3; // error 无法从“int (*)[3]”转换为“int ** </span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">&#125;`</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="comment">/*A是一个指针数组 */</span></div><div class="line">    <span class="keyword">int</span> **A = <span class="keyword">new</span> <span class="keyword">int</span> *[N];</div><div class="line">    <span class="comment">/*注意此处申请了各个空间不连续，和A[N][N]的方式要区分开来*/</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">        A[i] = <span class="keyword">new</span> <span class="keyword">int</span> [N];</div><div class="line">    &#125;</div><div class="line">    A[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">10</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*下面的输出中 一二个地址相同， 三四个地址相同</span></div><div class="line">    说明了每次new出的地址可能不相邻</div><div class="line">    */</div><div class="line">    <span class="keyword">double</span> *B  = (<span class="keyword">double</span> *)A;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The two address is same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;A&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;B&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The two address is same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;A[<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;&amp;A[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*下面两个的输出不相同</span></div><div class="line">    原因就是每个new操作申请的空间可能不相邻</div><div class="line">    但是如果对于 A[N][N]来说，这两者应该是相同的</div><div class="line">    */</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The output of the following two line wouldn't be the same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(*(A+<span class="number">1</span>)+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(B+<span class="number">1</span>*N+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// double *B  = (double *)A;</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/*验证了上面的说法 三者输出一致*/</span></div><div class="line">    <span class="keyword">int</span> C[N][N];</div><div class="line">    C[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">10</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">int</span> *D = (<span class="keyword">int</span> *)C;</div><div class="line"></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"The output of the following three line would be the same"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;C[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(D+<span class="number">1</span>*N+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(*(C+<span class="number">1</span>)+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">int</span> *F[N];<span class="comment">//F是指向 int *类型的 数组，数组大小为N</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</div><div class="line">    &#123;</div><div class="line">        F[i] = <span class="keyword">new</span> <span class="keyword">int</span>[N];</div><div class="line">    &#125;</div><div class="line">    F[<span class="number">1</span>][<span class="number">1</span>] =<span class="number">10</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*两者相等*/</span></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;F[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(*(F+<span class="number">1</span>)+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*不可预料*/</span></div><div class="line">    <span class="keyword">int</span> *G = (<span class="keyword">int</span> *)F;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;*(G+<span class="number">1</span>*N+<span class="number">1</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">/*如果把此处的 (int(*)[N][N])C换成C 则编译不通过，因为 在编译器看来C的类型 int(*)[10]而不是 int[N][N]*/</span></div><div class="line">    <span class="keyword">int</span> (*H)[N][N] = (<span class="keyword">int</span>(*)[N][N]) C;<span class="comment">//H是指向 int[N][N]类型的指针</span></div><div class="line">    <span class="comment">/*可以用这种方式来访问C中的元素*/</span></div><div class="line">    <span class="built_in">cout</span>&lt;&lt;(*H)[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[hexo搭建博客]]></title>
+      <url>//souga.me/2016/11/13/hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+      <content type="html"><![CDATA[<p>搭建hexo博客的一些参考链接</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><strong>参考链接</strong></h1><p><a href="http://www.jianshu.com/p/834d7cc0668d" target="_blank" rel="external">我的博客是如何搭建的</a><br><a href="http://www.cnblogs.com/jarson-7426/p/5430757.html" target="_blank" rel="external">使用hexo搭建属于自己的博客</a><br><a href="http://jingyan.baidu.com/article/d8072ac47aca0fec95cefd2d.html" target="_blank" rel="external">史上最详细“截图”搭建Hexo博客并部署到Github</a><br><a href="http://www.jianshu.com/p/985d07d88ef4" target="_blank" rel="external">Windows下一步步搭建自己的独立博客</a></p>
+<a id="more"></a>]]></content>
+    </entry>
+    
+  
+  
+</search>
